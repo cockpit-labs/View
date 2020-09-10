@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Select should match snapshot 1`] = `
+<div
+  class="s-select"
+>
+  <div
+    class="selected-option"
+  >
+    <span
+      class="label"
+    >
+      Choice 1
+    </span>
+     
+    <sicon-stub
+      name="chevron-down"
+    />
+  </div>
+   
+  <!---->
+</div>
+`;

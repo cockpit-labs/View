@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`List card should match snapshot 1`] = `
+<div
+  class="s-list-card"
+>
+  <div
+    class="title"
+  >
+    Follow Up POS
+  </div>
+   
+  <div
+    class="body"
+  >
+    Cum haec taliaque sollicitas eius aures everberarent expositas semper eius modi rumoribu
+  </div>
+   
+  <!---->
+   
+  <div
+    class="footer"
+  >
+    <div
+      class="info"
+    >
+      4 days left
+    </div>
+     
+    <sbutton-stub
+      icon="angle-right"
+      iconposition="right"
+      rounded="true"
+    >
+      Start
+    </sbutton-stub>
+  </div>
+</div>
+`;

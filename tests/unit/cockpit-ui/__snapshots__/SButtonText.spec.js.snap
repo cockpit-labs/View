@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button should match snapshot 1`] = `
+<button
+  class="s-button-text"
+>
+  <sicon-stub
+    fw="true"
+    name="times"
+  />
+   Hello world
+</button>
+`;

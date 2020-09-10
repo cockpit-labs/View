@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Alert can be open 1`] = `
+<transition-stub
+  name="overlay"
+>
+  <div
+    class="s-alert overlay alert"
+  >
+    <transition-stub
+      name="dialog"
+    >
+      <div
+        class="dialog"
+      >
+        <div
+          class="picto"
+        >
+          <sicon-stub
+            name="bell"
+          />
+        </div>
+         
+        <div
+          class="header"
+        >
+          Error 500
+        </div>
+         
+        <div
+          class="body"
+        >
+          Cum haec taliaque sollicitas eius aures everberarent expositas semper eius modi rumoribu
+        </div>
+         
+        <div
+          class="footer"
+        >
+          <sbutton-stub
+            iconposition="right"
+          >
+            ok
+          </sbutton-stub>
+        </div>
+      </div>
+    </transition-stub>
+  </div>
+</transition-stub>
+`;

@@ -1,0 +1,40 @@
+import { createLocalVue } from '@vue/test-utils'
+import VueKeycloak from '@/plugins/vue-keycloak'
+
+const localVue = createLocalVue()
+localVue.use(VueKeycloak)
+
+test('$keycloak is added to localVue instance', () => {
+  expect(localVue.prototype.$keycloak).toBeDefined()
+})
+
+test('Properties are defined', () => {
+  expect(localVue.prototype.$keycloak.ready).toBeDefined()
+  expect(localVue.prototype.$keycloak.authenticated).toBeDefined()
+  expect(localVue.prototype.$keycloak.userName).toBeDefined()
+  expect(localVue.prototype.$keycloak.fullName).toBeDefined()
+  expect(localVue.prototype.$keycloak.token).toBeDefined()
+  expect(localVue.prototype.$keycloak.tokenParsed).toBeDefined()
+  expect(localVue.prototype.$keycloak.logout).toBeDefined()
+  expect(localVue.prototype.$keycloak.login).toBeDefined()
+  expect(localVue.prototype.$keycloak.createLoginUrl).toBeDefined()
+  expect(localVue.prototype.$keycloak.createLogoutUrl).toBeDefined()
+  expect(localVue.prototype.$keycloak.createRegisterUrl).toBeDefined()
+  expect(localVue.prototype.$keycloak.register).toBeDefined()
+  expect(localVue.prototype.$keycloak.accountManagement).toBeDefined()
+  expect(localVue.prototype.$keycloak.createAccountUrl).toBeDefined()
+  expect(localVue.prototype.$keycloak.loadUserProfile).toBeDefined()
+  expect(localVue.prototype.$keycloak.loadUserInfo).toBeDefined()
+  expect(localVue.prototype.$keycloak.subject).toBeDefined()
+  expect(localVue.prototype.$keycloak.idToken).toBeDefined()
+  expect(localVue.prototype.$keycloak.idTokenParsed).toBeDefined()
+  expect(localVue.prototype.$keycloak.realmAccess).toBeDefined()
+  expect(localVue.prototype.$keycloak.resourceAccess).toBeDefined()
+  expect(localVue.prototype.$keycloak.refreshToken).toBeDefined()
+  expect(localVue.prototype.$keycloak.refreshTokenParsed).toBeDefined()
+  expect(localVue.prototype.$keycloak.timeSkew).toBeDefined()
+  expect(localVue.prototype.$keycloak.responseMode).toBeDefined()
+  expect(localVue.prototype.$keycloak.responseType).toBeDefined()
+  expect(localVue.prototype.$keycloak.hasRealmRole).toBeDefined()
+  expect(localVue.prototype.$keycloak.hasResourceRole).toBeDefined()
+})
