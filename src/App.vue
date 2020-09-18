@@ -32,7 +32,8 @@ export default {
 
   created () {
     http.interceptors.response.use(response => {
-      if (isEmpty(response.data)) {
+      const contentType = response.headers['content-type']
+      if ((contentType.indexOf('application/json') !== -1) && isEmpty(response.data)) {
         response.data = []
       }
       return response

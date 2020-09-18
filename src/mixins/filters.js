@@ -37,29 +37,6 @@ export default {
         (this.dateEnd !== null) &&
         (this.selectedTargetId !== null) &&
         (this.selectedTplFolderId !== null)
-    },
-
-    questionnaire () {
-      if (this.selectedFolder && this.selectedFolder.questionnaires) {
-        return this.selectedFolder.questionnaires[this.questionnaireNumber]
-      }
-      return null
-    },
-
-    nextQuestionnaire () {
-      const questionnaire = this.selectedFolder.questionnaires[this.questionnaireNumber + 1]
-      if (questionnaire) {
-        return true
-      }
-      return false
-    },
-
-    prevQuestionnaire () {
-      const questionnaire = this.selectedFolder.questionnaires[this.questionnaireNumber - 1]
-      if (questionnaire) {
-        return true
-      }
-      return false
     }
   }
 }

@@ -7,6 +7,8 @@
   "close": "Fermer",
   "ok": "OK",
   "cancel": "Annuler",
+  "downloadPdf": "Voir en PDF",
+  "pdfLoading": "Chargement du PDF en cours...",
   "mainMenu": {
     "questionnaires": "Questionnaires",
     "dashboard": "Dashboard",
@@ -21,7 +23,7 @@
     "scoresByThemeChart": "Scores par thème",
     "performanceChart": "Performance",
     "progressChart": "Avancement",
-    "foldersModalTitle": "Dossiers"
+    "foldersModalTitle": "Questionnaires"
   },
   "galleryPage": {
     "noData": "Aucune photo pour cette période"

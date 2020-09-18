@@ -43,19 +43,7 @@
       </SListCard>
     </ModalView>
 
-    <ModalView ref="questionnaire">
-      <template #title v-if="selectedFolder">{{ selectedFolder.label }}</template>
-      <template #subtitle v-if="selectedFolder">
-        {{ $t('answersPage.folderCreationDetails', {createdAt: formatDate(selectedFolder.updatedAt), createdBy: selectedFolder.updatedBy}) }}
-      </template>
-
-      <Questionnaire v-if="questionnaire" :questionnaire="questionnaire" :readOnly="true" />
-
-      <template #footer v-if="selectedFolder && selectedFolder.questionnaires.length > 1">
-        <SButton v-if="prevQuestionnaire" @click="goToPrevQuestionnaire">{{ $t('previous') }}</SButton>
-        <SButton v-if="nextQuestionnaire"  @click="goToNextQuestionnaire">{{ $t('next') }}</SButton>
-      </template>
-    </ModalView>
+    <QuestionnaireReadModal ref="questionnaire" :selectedFolder="selectedFolder" />
   </div>
 </template>
 
@@ -70,8 +58,8 @@ import LineChart from '@/components/charts/LineChart'
 import collect from 'collect.js'
 import { DateTime } from 'luxon'
 import ModalView from '@/components/ModalView'
-import Questionnaire from '@/components/Questionnaire'
 import FiltersUtils from '@/mixins/filters'
+import QuestionnaireReadModal from '@/components/QuestionnaireReadModal'
 
 export default {
   components: {
@@ -79,7 +67,7 @@ export default {
     HorizontalBar,
     LineChart,
     ModalView,
-    Questionnaire
+    QuestionnaireReadModal
   },
 
   mixins: [FiltersUtils],
@@ -100,8 +88,7 @@ export default {
       loadingProgress: false,
       loadingFolders: false,
       folders: [],
-      selectedFolder: null,
-      questionnaireNumber: 0
+      selectedFolder: null
     }
   },
 
@@ -288,16 +275,6 @@ export default {
     selectFolder (folder) {
       this.selectedFolder = folder
       this.$refs.questionnaire.open()
-    },
-
-    goToPrevQuestionnaire () {
-      this.questionnaireNumber = this.questionnaireNumber - 1
-      this.$refs.questionnaire.scrollTop = 0
-    },
-
-    goToNextQuestionnaire () {
-      this.questionnaireNumber = this.questionnaireNumber + 1
-      this.$refs.questionnaire.scrollTop = 0
     }
   },
 

@@ -7,6 +7,8 @@
   "close": "Close",
   "ok": "OK",
   "cancel": "Cancel",
+  "downloadPdf": "View in PDF",
+  "pdfLoading": "Loading PDF...",
   "mainMenu": {
     "questionnaires": "Questionnaires",
     "dashboard": "Dashboard",
@@ -20,7 +22,8 @@
     "benchmarkChart": "Benchmark",
     "scoresByThemeChart": "Scores by themes",
     "performanceChart": "Performance",
-    "progressChart": "Progress"
+    "progressChart": "Progress",
+    "foldersModalTitle": "Questionnaires"
   },
   "galleryPage": {
     "noData": "No photo for this period"

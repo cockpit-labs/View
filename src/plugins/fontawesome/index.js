@@ -19,7 +19,8 @@ import {
   faExclamation,
   faBell,
   faInfo,
-  faCheckSquare
+  faCheckSquare,
+  faFilePdf
 
 } from '@fortawesome/free-solid-svg-icons'
 
@@ -43,5 +44,6 @@ library.add(
   faExclamation,
   faBell,
   faInfo,
-  faCheckSquare
+  faCheckSquare,
+  faFilePdf
 )

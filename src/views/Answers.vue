@@ -17,26 +17,13 @@
       </SListCard>
     </div>
 
-    <ModalView ref="questionnaire">
-      <template #title v-if="selectedFolder">{{ selectedFolder.label }}</template>
-      <template #subtitle v-if="selectedFolder">
-        {{ $t('answersPage.folderCreationDetails', {createdAt: formatDate(selectedFolder.updatedAt), createdBy: selectedFolder.updatedBy}) }}
-      </template>
-
-      <Questionnaire v-if="questionnaire" :questionnaire="questionnaire" :readOnly="true" />
-
-      <template #footer v-if="selectedFolder && selectedFolder.questionnaires.length > 1">
-        <SButton v-if="prevQuestionnaire" @click="goToPrevQuestionnaire">{{ $t('previous') }}</SButton>
-        <SButton v-if="nextQuestionnaire"  @click="goToNextQuestionnaire">{{ $t('next') }}</SButton>
-      </template>
-    </ModalView>
+    <QuestionnaireReadModal ref="questionnaire" :selectedFolder="selectedFolder" />
   </div>
 </template>
 
 <script>
 import PageFilters from '@/components/PageFilters'
-import ModalView from '@/components/ModalView'
-import Questionnaire from '@/components/Questionnaire'
+import QuestionnaireReadModal from '@/components/QuestionnaireReadModal'
 import { http } from '@/plugins/http'
 import qs from 'qs'
 import { DateTime } from 'luxon'
@@ -45,8 +32,7 @@ import FiltersUtils from '@/mixins/filters'
 export default {
   components: {
     PageFilters,
-    ModalView,
-    Questionnaire
+    QuestionnaireReadModal
   },
 
   mixins: [FiltersUtils],
@@ -55,8 +41,7 @@ export default {
     return {
       loading: false,
       folders: [],
-      selectedFolder: null,
-      questionnaireNumber: 0
+      selectedFolder: null
     }
   },
 
@@ -96,16 +81,6 @@ export default {
     selectFolder (folder) {
       this.selectedFolder = folder
       this.$refs.questionnaire.open()
-    },
-
-    goToPrevQuestionnaire () {
-      this.questionnaireNumber = this.questionnaireNumber - 1
-      this.$refs.questionnaire.scrollMainTop()
-    },
-
-    goToNextQuestionnaire () {
-      this.questionnaireNumber = this.questionnaireNumber + 1
-      this.$refs.questionnaire.scrollMainTop()
     }
   },
 

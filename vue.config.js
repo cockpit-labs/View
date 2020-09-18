@@ -8,7 +8,7 @@ module.exports = {
       },
       '^/data/lang/view': {
         target: 'http://localhost:8080',
-        pathRewrite: {'^/data/lang/view' : '/lang'}
+        pathRewrite: { '^/data/lang/view': '/lang' }
       }
     }
   },
