@@ -32,12 +32,6 @@ import questionUtils from '@/mixins/questions'
 export default {
   name: 'QuestionText',
 
-  props: {
-    question: Object,
-    answer: Object,
-    readOnly: Boolean
-  },
-
   mixins: [questionUtils],
 
   data () {
@@ -60,7 +54,7 @@ export default {
 
   methods: {
     commitText () {
-      this.setRawValue(this.localValue)
+      this.setRawValue(this.localValue || null)
       this.charCounterVisible = false
     },
 

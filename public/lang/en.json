@@ -9,6 +9,9 @@
   "cancel": "Cancel",
   "downloadPdf": "View in PDF",
   "pdfLoading": "Loading PDF...",
+  "yes": "Yes",
+  "no": "No",
+  "none": "None",
   "mainMenu": {
     "questionnaires": "Questionnaires",
     "dashboard": "Dashboard",
@@ -16,7 +19,8 @@
     "logout": "Logout",
     "language": "Language",
     "closeMenu": "Close menu",
-    "answers": "Answers"
+    "answers": "Answers",
+    "tasks": "Tasks"
   },
   "dashboardPage": {
     "benchmarkChart": "Benchmark",
@@ -26,7 +30,8 @@
     "foldersModalTitle": "Questionnaires"
   },
   "galleryPage": {
-    "noData": "No photo for this period"
+    "noData": "No photo for this period",
+    "showLinkedQuestionnaire": "Show linked questionnaire"
   },
   "questionnairesPage": {
     "start": "Start",
@@ -36,7 +41,11 @@
   "answersPage": {
     "noData": "No questionnaire",
     "folderCreationDetails": "{createdAt} by {createdBy}",
-    "viewFolderQuestionnaires": "View"
+    "viewFolderQuestionnaires": "View",
+    "sendByEmail": "Send by email",
+    "recipientsReport": "Recipients of the report",
+    "sendingEmail": "Sending...",
+    "sendEmail": "Send"
   },
   "pageNotFound": {
     "title": "Page not found",
@@ -56,7 +65,9 @@
     "selectQuestionnaire": "Select a questionnaire",
     "enterDate": "Enter a date",
     "selectMultipleAnswers": "Select one or more answers",
-    "multipleAnswersSelected": "{n} item selected | {n} items selected"
+    "multipleAnswersSelected": "{n} item selected | {n} items selected",
+    "selectUser": "Select a user",
+    "searchPlaceholder": "Enter few letters..."
   },
   "question": {
     "required": "Required",
@@ -90,5 +101,29 @@
     "errorTitle": "Error {code}",
     "errorOccurred": "An error occurred<br>Please try again later",
     "retry": "Retry"
+  },
+  "tasks": {
+    "title": "Task | Tasks",
+    "numberOfTasks": "No task | 1 task | {n} tasks",
+    "dueDate": "Due date",
+    "assignTo": "Assigned to",
+    "edit": "Edit",
+    "done": "Done",
+    "toDo": "To do",
+    "followers": "Followers",
+    "newTask": "New task",
+    "tasksToDo": "Tasks",
+    "label": "Label",
+    "required": "Required",
+    "cancel": "Cancel",
+    "add": "Add",
+    "validate": "Save",
+    "createTask": "Add new task",
+    "noTask": "No task",
+    "filterAssignedToMe": "Assigned to me",
+    "filterTasksFollowed": "Followed",
+    "filterCreateByMe": "Create by me",
+    "confirmDone": "Confirm ?",
+    "noDueDate": "No due date"
   }
 }

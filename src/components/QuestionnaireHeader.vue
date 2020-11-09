@@ -16,12 +16,6 @@
   </div>
 </template>
 
-<script>
-export default {
-
-}
-</script>
-
 <style lang="scss">
 .questionnaire-header {
   position: relative;
@@ -49,7 +43,7 @@ export default {
 }
 
 .questionnaire-header .title {
-  justify-self: center;
+  text-align: center;
   color: var(--color-n-100);
   font-weight: $fw-semibold;
   text-transform: uppercase;

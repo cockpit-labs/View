@@ -3,6 +3,9 @@
     <div class="base-question">
       <div class="question-label">
         {{ question.label }}
+        <div class="external-url" v-if="question.externalUrl">
+          <a :href="question.externalUrl" target="_blank" rel="noopener noreferrer">{{ question.externalUrl }}</a> <SIcon name="external-link-alt" />
+        </div>
       </div>
       <div class="question-required" v-if="isRequired" @click="requiredExpanded = !requiredExpanded">
         <SIcon name="asterisk" fw />
@@ -11,10 +14,9 @@
       <div class="question-answer" v-if="question.writeRenderer.component !== 'none'">
         <component
           ref="questionComponent"
-          :key="answer.id"
+          :key="question.id"
           :is="getComponent(question.writeRenderer.component)"
-          :question="question"
-          :answer.sync="answer"
+          :question.sync="question"
           :readOnly="readOnly"
         />
       </div>
@@ -31,7 +33,7 @@
           <OptionComment
             ref="optionCommentComponent"
             v-if="optionCommentVisible"
-            v-model="answer.comment"
+            v-model="question.comment"
             :placeholder="$t('placeholder.comment')"
             :readOnly="readOnly"
             @close="optionCommentVisible = false"
@@ -40,7 +42,7 @@
           <OptionPhoto
             ref="optionPhotoComponent"
             v-if="optionPhotosVisible"
-            v-model="answer.photos"
+            v-model="question.photos"
             :max-photos="question.maxPhotos"
             :readOnly="readOnly"
             @close="optionPhotosVisible = false"
@@ -50,10 +52,10 @@
     </div>
 
     <BaseQuestion
-      v-for="questionAnswer in answer.children"
-      :key="questionAnswer.id"
-      :question="questionAnswer.question"
-      :answer="questionAnswer"
+      v-for="childQuestion in question.children"
+      :key="childQuestion.id"
+      :question="childQuestion"
+      :readOnly="readOnly"
     />
   </div>
 </template>
@@ -88,10 +90,6 @@ export default {
       type: Object,
       required: true
     },
-    answer: {
-      type: Object,
-      required: true
-    },
     readOnly: {
       type: Boolean,
       default: false
@@ -100,8 +98,8 @@ export default {
 
   data () {
     return {
-      optionCommentVisible: Boolean(this.question.hasComment && this.answer.comment),
-      optionPhotosVisible: Boolean(this.answer.photos.length > 0) &&
+      optionCommentVisible: Boolean(this.question.hasComment && this.question.comment),
+      optionPhotosVisible: Boolean(this.question.photos.length > 0) &&
         this.question.writeRenderer.component !== 'photo',
       requiredExpanded: false
     }
@@ -132,8 +130,22 @@ export default {
       const trigger = this.question.trigger || {}
       if (typeof trigger.expression === 'string') {
         const expressionLanguage = new ExpressionLanguage()
-        const result = expressionLanguage.evaluate(trigger.expression, this.parent.answer)
-        return typeof result === 'boolean' ? result : false
+
+        const expressionParams = {
+          value: this.parent.question.answers[0]?.value || null,
+          rawValue: this.parent.question.answers[0]?.rawValue || null,
+          values: this.parent.question.answers.map(a => a.value),
+          rawValues: this.parent.question.answers.map(a => a.rawValues),
+          count: this.parent.question.answers.length
+        }
+
+        try {
+          const result = expressionLanguage.evaluate(trigger.expression, expressionParams)
+          return typeof result === 'boolean' ? result : false
+        } catch (error) {
+          console.log(trigger.expression, error)
+          return false
+        }
       }
 
       return false
@@ -169,7 +181,9 @@ export default {
     },
 
     resetQuestion () {
-      this.$refs.questionComponent.reset()
+      if (this.$refs.questionComponent) {
+        this.$refs.questionComponent.reset()
+      }
 
       if (this.optionPhotosVisible) {
         this.$refs.optionPhotoComponent.reset()
@@ -215,6 +229,15 @@ export default {
   grid-area: label;
   padding: 16px 16px 24px 16px;
   align-self: flex-start;
+
+  .external-url {
+    margin-top: 16px;
+    color: var(--color-p-500);
+
+    a {
+      color: var(--color-p-500);
+    }
+  }
 }
 
 .question-required {

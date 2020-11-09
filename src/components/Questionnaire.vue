@@ -12,11 +12,11 @@
         </div>
 
         <BaseQuestion
-          v-for="questionAnswer in block.questionAnswers"
-          :key="questionAnswer.id"
-          :question="questionAnswer.question"
-          :answer="questionAnswer"
+          v-for="question in block.questions"
+          :key="question.id"
+          :question="question"
           :readOnly="readOnly"
+          :id="question.id"
         />
       </div>
     </div>

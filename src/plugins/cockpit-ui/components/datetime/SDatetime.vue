@@ -59,6 +59,12 @@ export default {
       this.localValue = null
       this.commitValue()
     }
+  },
+
+  watch: {
+    value (newValue) {
+      this.localValue = newValue
+    }
   }
 }
 </script>

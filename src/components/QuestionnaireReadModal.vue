@@ -7,30 +7,61 @@
 
     <Questionnaire v-if="questionnaire" :questionnaire="questionnaire" :readOnly="true" />
 
+    <div class="tasks" v-if="questionnaire && questionnaire.tasks.length > 0">
+      <div class="header">
+        <div class="separator"></div>
+        <div class="title">{{ $tc('tasks.title', 2) }}</div>
+      </div>
+
+      <TaskItem
+        v-for="(task, i) in questionnaire.tasks"
+        :key="i"
+        :task="task"
+        mode="read"
+      />
+    </div>
+
     <template #footer>
       <div class="questionnaire-footer">
-        <div class="tools">
-          <SButtonText icon="file-pdf" @click="downloadPdf">{{ $t('downloadPdf') }}</SButtonText>
-        </div>
         <div class="pagination" v-if="selectedFolder && selectedFolder.questionnaires.length > 1">
           <SButton v-if="prevQuestionnaire" @click="goToPrevQuestionnaire">{{ $t('previous') }}</SButton>
           <SButton v-if="nextQuestionnaire"  @click="goToNextQuestionnaire">{{ $t('next') }}</SButton>
         </div>
+        <div class="tools">
+          <SButtonText icon="file-pdf" @click="downloadPdf">{{ $t('downloadPdf') }}</SButtonText>
+          <SButtonText icon="paper-plane" @click="openSendByEmailModal">{{ $t('answersPage.sendByEmail') }}</SButtonText>
+        </div>
       </div>
     </template>
+
+    <ModalView ref="emailModal">
+      <template #title>{{ $t('answersPage.sendByEmail') }}</template>
+      <div class="recipients">
+        <div class="label">{{ $t('answersPage.recipientsReport') }}</div>
+        <UserSearch v-model="recipients" :max="5" />
+      </div>
+      <template #footer>
+        <div v-if="sendingEmail" class="sending">{{ $t('answersPage.sendingEmail') }}</div>
+        <SButton v-else @click="sendByEmail">{{ $t('answersPage.sendEmail') }}</SButton>
+      </template>
+    </ModalView>
   </ModalView>
 </template>
 
 <script>
 import ModalView from '@/components/ModalView'
 import Questionnaire from '@/components/Questionnaire'
+import TaskItem from '@/components/TaskItem'
+import UserSearch from '@/components/UserSearch'
 import { DateTime } from 'luxon'
 import { http } from '@/plugins/http'
 
 export default {
   components: {
     ModalView,
-    Questionnaire
+    Questionnaire,
+    TaskItem,
+    UserSearch
   },
 
   props: {
@@ -41,7 +72,9 @@ export default {
 
   data () {
     return {
-      questionnaireNumber: 0
+      questionnaireNumber: 0,
+      recipients: [],
+      sendingEmail: false
     }
   },
 
@@ -51,6 +84,14 @@ export default {
         return this.selectedFolder.questionnaires[this.questionnaireNumber]
       }
       return null
+    },
+
+    nextQuestionnaire () {
+      return this.selectedFolder.questionnaires[this.questionnaireNumber + 1] || false
+    },
+
+    prevQuestionnaire () {
+      return this.selectedFolder.questionnaires[this.questionnaireNumber - 1] || false
     }
   },
 
@@ -61,22 +102,6 @@ export default {
 
     formatDate (datetime) {
       return DateTime.fromISO(datetime).toLocaleString(DateTime.DATETIME_SHORT)
-    },
-
-    nextQuestionnaire () {
-      const questionnaire = this.selectedFolder.questionnaires[this.questionnaireNumber + 1]
-      if (questionnaire) {
-        return true
-      }
-      return false
-    },
-
-    prevQuestionnaire () {
-      const questionnaire = this.selectedFolder.questionnaires[this.questionnaireNumber - 1]
-      if (questionnaire) {
-        return true
-      }
-      return false
     },
 
     goToPrevQuestionnaire () {
@@ -120,6 +145,28 @@ export default {
       } catch (error) {
         return Promise.reject(error)
       }
+    },
+
+    openSendByEmailModal () {
+      this.$refs.emailModal.open()
+    },
+
+    async sendByEmail () {
+      try {
+        this.sendingEmail = true
+        await http.get('questionnaires/' + this.questionnaire.id + '/sendpdf', {
+          params: {
+            recipients: this.recipients.map(r => r.id)
+          }
+        })
+        this.$refs.emailModal.close()
+        return Promise.resolve()
+      } catch (error) {
+        return Promise.reject(error)
+      } finally {
+        this.sendingEmail = false
+        this.recipients = []
+      }
     }
   }
 }
@@ -134,6 +181,7 @@ export default {
   .tools {
     flex: 1;
     display: flex;
+    gap: 8px;
   }
 
   .pagination {
@@ -142,6 +190,32 @@ export default {
     > .s-button {
       margin: 0 8px;
     }
+  }
+}
+
+.tasks .header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 24px;
+
+  .separator {
+    width: 50px;
+    height: 2px;
+    background-color: var(--color-n-500);
+    margin-bottom: 24px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+}
+
+.recipients {
+  min-height: 300px;
+
+  .label {
+    margin-bottom: 16px;
   }
 }
 </style>

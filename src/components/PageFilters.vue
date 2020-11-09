@@ -122,7 +122,7 @@ export default {
           const tplIds = this.templateFolders.map(t => t.id)
 
           if (tplIds.includes(this.selectedTplFolderId)) {
-            this.localSelectedTplFolderId = this.selectedTplFolderId
+            this.localSelectedTplFolderId = [this.selectedTplFolderId]
             this.getTplFolderPeriods()
           } else {
             this.$store.commit('setSelectedFolderId', null)
@@ -146,7 +146,7 @@ export default {
 
     localSelectedTplFolderId: function (newValue) {
       if (newValue !== null) {
-        this.$store.commit('setSelectedFolderId', newValue)
+        this.$store.commit('setSelectedFolderId', newValue[0])
         this.getTplFolderPeriods()
       }
     },
@@ -168,7 +168,6 @@ export default {
   grid-template-columns: 1fr;
   grid-auto-rows: min-content;
   gap: 8px;
-  padding-top: 8px;
 }
 
 .period-selector {
@@ -186,7 +185,6 @@ export default {
 .desktop {
   .form {
     gap: 16px;
-    padding-top: 0;
   }
 
   .period-selector {

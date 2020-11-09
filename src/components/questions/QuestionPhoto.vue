@@ -53,16 +53,15 @@ export default {
 
   props: {
     question: Object,
-    answer: Object,
     readOnly: Boolean
   },
 
   computed: {
     localValue () {
-      if (isEmpty(this.answer.answerValues)) {
+      if (isEmpty(this.question.answers)) {
         return []
       }
-      return this.answer.answerValues.map(v => v.media)
+      return this.question.answers.map(v => v.media)
     },
 
     max () {
@@ -77,11 +76,11 @@ export default {
 
   watch: {
     collection: function (newPhotos = []) {
-      this.answer.answerValues = newPhotos.map(v => {
+      this.question.answers = newPhotos.map(v => {
         return { media: v.id }
       })
 
-      this.$emit('update:answer', this.answer)
+      this.$emit('update:question', this.question)
     }
   }
 }

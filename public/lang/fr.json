@@ -9,6 +9,9 @@
   "cancel": "Annuler",
   "downloadPdf": "Voir en PDF",
   "pdfLoading": "Chargement du PDF en cours...",
+  "yes": "Oui",
+  "no": "Non",
+  "none": "Aucun",
   "mainMenu": {
     "questionnaires": "Questionnaires",
     "dashboard": "Dashboard",
@@ -16,7 +19,8 @@
     "logout": "Déconnexion",
     "language": "Langue",
     "closeMenu": "Fermer le menu",
-    "answers": "Réponses"
+    "answers": "Réponses",
+    "tasks": "Actions"
   },
   "dashboardPage": {
     "benchmarkChart": "Benchmark",
@@ -26,7 +30,8 @@
     "foldersModalTitle": "Questionnaires"
   },
   "galleryPage": {
-    "noData": "Aucune photo pour cette période"
+    "noData": "Aucune photo pour cette période",
+    "showLinkedQuestionnaire": "Voir le questionnaire associé"
   },
   "questionnairesPage": {
     "start": "Commencer",
@@ -36,7 +41,11 @@
   "answersPage": {
     "noData": "Aucun questionnaire",
     "folderCreationDetails": "Le {createdAt} par {createdBy}",
-    "viewFolderQuestionnaires": "Consulter"
+    "viewFolderQuestionnaires": "Consulter",
+    "sendByEmail": "Envoyer par email",
+    "recipientsReport": "Destinataires du rapport",
+    "sendingEmail": "Envoi en cours...",
+    "sendEmail": "Envoyer"
   },
   "pageNotFound": {
     "title": "Page introuvable",
@@ -56,7 +65,9 @@
     "selectQuestionnaire": "Sélectionnez un questionnaire",
     "enterDate": "Saisir une date",
     "selectMultipleAnswers": "Sélectionnez une ou plusieurs réponses",
-    "multipleAnswersSelected": "{n} élément sélectionné | {n} éléments sélectionnés"
+    "multipleAnswersSelected": "{n} élément sélectionné | {n} éléments sélectionnés",
+    "selectUser": "Sélectionnez un utilisateur",
+    "searchPlaceholder": "Saisir quelques lettres..."
   },
   "question": {
     "required": "Obligatoire",
@@ -90,5 +101,29 @@
     "errorTitle": "Erreur {code}",
     "errorOccurred": "Une erreur technique s'est produite<br>Merci de réessayer plus tard",
     "retry": "Réessayer"
+  },
+  "tasks": {
+    "title": "Action | Actions",
+    "numberOfTasks": "Aucune action | 1 action | {n} actions",
+    "dueDate": "Échéance",
+    "noDueDate": "Pas d'échéance",
+    "assignTo": "Assigné à",
+    "edit": "Modifier",
+    "done": "Fait",
+    "toDo": "À faire",
+    "followers": "Abonnés",
+    "newTask": "Nouvelle action",
+    "tasksToDo": "Actions à mener",
+    "label": "Libellé",
+    "required": "Obligatoire",
+    "cancel": "Annuler",
+    "add": "Ajouter",
+    "validate": "Valider",
+    "createTask": "Ajouter une action",
+    "noTask": "Aucune action",
+    "filterAssignedToMe": "Pour moi",
+    "filterTasksFollowed": "Suivi",
+    "filterCreateByMe": "Créer par moi",
+    "confirmDone": "Confirmez-vous ?"
   }
 }

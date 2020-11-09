@@ -10,6 +10,8 @@
         <SButton @click="reloadApp">{{ $t('alert.retry') }}</SButton>
       </template>
     </SAlert>
+
+    <portal-target name="modal-view" multiple />
   </div>
 </template>
 

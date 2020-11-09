@@ -1,4 +1,5 @@
 import { library } from '@fortawesome/fontawesome-svg-core'
+
 import {
   faCaretDown,
   faCaretLeft,
@@ -20,9 +21,17 @@ import {
   faBell,
   faInfo,
   faCheckSquare,
-  faFilePdf
-
+  faFilePdf,
+  faThumbtack,
+  faCheck,
+  faCheckCircle,
+  faPaperPlane,
+  faExternalLinkAlt
 } from '@fortawesome/free-solid-svg-icons'
+
+import {
+  faCircle
+} from '@fortawesome/free-regular-svg-icons'
 
 library.add(
   faCaretDown,
@@ -45,5 +54,11 @@ library.add(
   faBell,
   faInfo,
   faCheckSquare,
-  faFilePdf
+  faFilePdf,
+  faThumbtack,
+  faCheck,
+  faCircle,
+  faCheckCircle,
+  faPaperPlane,
+  faExternalLinkAlt
 )

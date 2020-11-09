@@ -65,7 +65,7 @@ export default {
 
 .s-button.ghost {
   box-shadow: none;
-  background-color: var(--color-n-000);
+  background-color: transparent;
   color: var(--color-n-500);
   border: 1px solid var(--color-n-400);
 

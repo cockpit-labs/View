@@ -42,12 +42,6 @@ export default {
 
   mixins: [questionUtils],
 
-  props: {
-    question: Object,
-    answer: Object,
-    readOnly: Boolean
-  },
-
   data () {
     return {
       localValue: this.cleanSelectedOptions(this.getChoices())
@@ -80,9 +74,7 @@ export default {
   methods: {
     cleanSelectedOptions (selectedOptions) {
       if (Array.isArray(selectedOptions)) {
-        return selectedOptions.map(option => {
-          return option.substring(option.lastIndexOf('/') + 1)
-        })
+        return selectedOptions.map(option => option.id)
       }
       return []
     },

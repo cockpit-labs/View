@@ -26,12 +26,6 @@ import questionUtils from '@/mixins/questions'
 export default {
   name: 'QuestionRange',
 
-  props: {
-    question: Object,
-    answer: Object,
-    readOnly: Boolean
-  },
-
   mixins: [questionUtils],
 
   data () {

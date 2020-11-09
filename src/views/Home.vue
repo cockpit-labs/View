@@ -97,7 +97,7 @@ export default {
       if (this.selectedTarget) {
         return this.selectedTarget.tplFolders.filter(folder => {
           const draftTplFolderIds = this.draftFolders.flatMap(t => t.folderUri)
-          return !draftTplFolderIds.includes('/core/api/tpl_folders/' + folder.id)
+          return !draftTplFolderIds.includes('/core/api/folder_tpls/' + folder.id)
         })
       } else {
         return null

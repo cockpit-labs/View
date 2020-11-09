@@ -1,13 +1,14 @@
 module.exports = {
   devServer: {
+    port: 3454,
     proxy: {
       '^/core/api': {
-        target: 'https://cockpitce.vagrant.cockpitlab.local',
+        target: 'http://localhost',
         ws: true,
         changeOrigin: true
       },
       '^/data/lang/view': {
-        target: 'http://localhost:8080',
+        target: 'http://localhost:3454',
         pathRewrite: { '^/data/lang/view': '/lang' }
       }
     }

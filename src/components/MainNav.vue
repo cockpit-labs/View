@@ -49,7 +49,8 @@ export default {
         { label: this.$t('mainMenu.questionnaires'), url: '/' },
         { label: this.$t('mainMenu.answers'), url: '/answers' },
         { label: this.$t('mainMenu.dashboard'), url: '/dashboard' },
-        { label: this.$t('mainMenu.gallery'), url: '/gallery' }
+        { label: this.$t('mainMenu.gallery'), url: '/gallery' },
+        { label: this.$t('mainMenu.tasks'), url: '/tasks' }
       ]
     },
 

@@ -29,6 +29,11 @@ const routes = [
       path: 'gallery',
       name: 'gallery',
       component: () => import(/* webpackChunkName: "gallery" */ '../views/Gallery.vue')
+    },
+    {
+      path: 'tasks',
+      name: 'tasks',
+      component: () => import(/* webpackChunkName: "tasks" */ '../views/Tasks.vue')
     }]
   },
   {

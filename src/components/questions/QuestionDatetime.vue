@@ -31,12 +31,6 @@ export default {
     Datetime
   },
 
-  props: {
-    question: Object,
-    answer: Object,
-    readOnly: Boolean
-  },
-
   mixins: [questionUtils],
 
   data () {

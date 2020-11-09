@@ -196,7 +196,7 @@ export default {
       this.loadingPerformance = false
 
       // Avancement
-      response = await http.get('tpl_folders/' + this.selectedTplFolderId + '/expectation', {
+      response = await http.get('folder_tpls/' + this.selectedTplFolderId + '/expectation', {
         params: {
           fromdate: this.dateStart,
           todate: this.dateEnd

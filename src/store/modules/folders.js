@@ -26,7 +26,7 @@ const mutations = {
 const actions = {
   async getFolders (context, { right }) {
     const [templateFolders, draftFolders] = await Promise.all([
-      http.get('tpl_folders', {
+      http.get('folder_tpls', {
         params: {
           'permissions.right': right
         }
@@ -44,7 +44,7 @@ const actions = {
             description: f.description,
             availableFrom: f.periodStart,
             availableUntil: f.periodEnd,
-            questionnaires: f.tplQuestionnaires
+            questionnaires: f.questionnaireTpls
           }
         })
       }),
@@ -67,7 +67,7 @@ const actions = {
             availableUntil: f.periodEnd,
             questionnaires: f.questionnaires,
             targetId: f.target,
-            folderUri: f.tplFolder
+            folderUri: f.folderTpl
           }
         })
       })
@@ -78,7 +78,7 @@ const actions = {
     const { targetId, templateFolderId } = params
     const folderInstantiated = await http.post('folders', {
       target: targetId,
-      tplFolder: '/api/tpl_folders/' + templateFolderId
+      folderTpl: '/api/folder_tpls/' + templateFolderId
     })
 
     const dataInserted = await Folder.insert({
@@ -91,7 +91,7 @@ const actions = {
         availableUntil: folderInstantiated.data.periodEnd,
         questionnaires: folderInstantiated.data.questionnaires,
         targetId: folderInstantiated.data.target,
-        folderUri: folderInstantiated.data.tplFolder
+        folderUri: folderInstantiated.data.folderTpl
       }
     })
 
@@ -122,7 +122,7 @@ const actions = {
 
   async getTplFolderPeriods ({ state }) {
     const response = await http.get(
-      'tpl_folders/' + state.selectedFolderId + '/periods', {
+      'folder_tpls/' + state.selectedFolderId + '/periods', {
         params: {
           fromdate: DateTime.utc().minus({ year: 1 }).startOf('day').toISO(),
           todate: DateTime.utc().endOf('day').toISO()

@@ -13,6 +13,7 @@ import VueMq from 'vue-mq'
 import PortalVue from 'portal-vue'
 import GlobalEvents from 'vue-global-events'
 import { Settings } from 'luxon'
+import VueFuse from 'vue-fuse'
 
 Vue.config.productionTip = false
 
@@ -27,9 +28,10 @@ Vue.use(VueMq, {
 Vue.use(CockpitUi)
 Vue.use(PortalVue)
 Vue.component('GlobalEvents', GlobalEvents)
+Vue.use(VueFuse)
 
 Vue.use(VueKeycloak, {
-  keycloakJsonPath: '/data/cockpitview-auth.json',
+  keycloakJsonPath: '/core/api/config/view',
   onReady: async (keycloak) => {
     Settings.defaultLocale = keycloak.locale || 'fr'
     await loadLanguage(keycloak.locale)

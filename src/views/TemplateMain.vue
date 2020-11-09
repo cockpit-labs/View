@@ -11,8 +11,6 @@
       </div>
       <router-view />
     </div>
-
-    <portal-target name="modal-view" multiple />
   </div>
 </template>
 

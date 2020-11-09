@@ -40,7 +40,7 @@ export default {
   },
 
   props: {
-    value: [String, Array],
+    value: [Array],
     options: {
       type: Array
     },
@@ -82,8 +82,8 @@ export default {
           return this.$t('placeholder.selectMultipleAnswers')
         }
       } else {
-        if (this.value && !Array.isArray(this.value)) {
-          const selectedOption = this.options.find(option => option.id === this.value)
+        if (this.value && this.value.length > 0) {
+          const selectedOption = this.options.find(option => option.id === this.value[0])
           return selectedOption.label
         } else {
           return this.placeholder
@@ -101,21 +101,21 @@ export default {
       this.opened = false
     },
 
-    selectOption (value) {
+    selectOption (id) {
       let val = this.value
       if (this.multiselect) {
         if (!Array.isArray(val)) {
           val = val ? [val] : []
         }
-        const index = val.indexOf(value)
+        const index = val.indexOf(id)
         if (index !== -1) {
           this.$delete(val, index)
         } else {
-          val.push(value)
+          val.push(id)
         }
         this.$emit('input', val)
       } else {
-        this.$emit('input', value)
+        this.$emit('input', [id])
         this.close()
       }
     },
@@ -185,7 +185,6 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  align-items: center;
   padding: 16px 24px;
   border-radius: 8px;
   color: var(--color-n-800);
@@ -213,7 +212,7 @@ export default {
   border-radius: 8px;
   background-color: var(--color-n-000);
   box-shadow: -2px 2px 28px 2px rgba(0, 0, 0, 0.2);
-  z-index: 1;
+  z-index: 11;
 }
 
 .options .selected-option {

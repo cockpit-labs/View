@@ -1,0 +1,9 @@
+config
+public
+src
+tests
+yarn.*
+babel*
+package.json
+vue.config.js
+node_modules

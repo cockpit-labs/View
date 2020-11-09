@@ -4,7 +4,7 @@ import SSelect from '@/plugins/cockpit-ui/components/select/SSelect'
 describe('Select', () => {
   const wrapper = shallowMount(SSelect, {
     propsData: {
-      value: '1',
+      value: ['1'],
       options: [
         { id: '1', label: 'Choice 1' },
         { id: '2', label: 'Choice 2' },
